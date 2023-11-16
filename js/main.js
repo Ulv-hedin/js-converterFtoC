@@ -10,15 +10,35 @@ const swap = () => {
 	if (one.textContent === '°C') {
 		one.textContent = '°F'
 		two.textContent = '°C'
+		result.textContent = ''
 	} else {
 		one.textContent = '°C'
 		two.textContent = '°F'
+		result.textContent = ''
 	}
 }
 
-changeBtn.addEventListener('click', swap)
-
-const convFtoC = () => {
-    
-    
+const convAll = () => {
+	if (converter.value !== '') {
+		if (one.textContent === '°C') {
+			fahrenheit = converter.value * 1.8 + 32
+			result.textContent = `${converter.value}°C to ${fahrenheit.toFixed(1)}°F`
+			converter.value = ''
+		} else {
+			celsius = (converter.value - 32) / 1.8
+			result.textContent = `${converter.value}°F to ${celsius.toFixed(1)})°C`
+			converter.value = ''
+		}
+	} else {
+		result.textContent = 'Musisz podać jakąś wartość'
+	}
 }
+
+const resetAll = () => {
+	result.textContent = ''
+	converter.value = ''
+}
+
+changeBtn.addEventListener('click', swap)
+convBtn.addEventListener('click', convAll)
+resetBtn.addEventListener('click', resetAll)
